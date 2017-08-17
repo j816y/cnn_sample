@@ -133,6 +133,7 @@ void conv(){
     }
     
     if(ODEBUG){
+        cout << "Output: " << endl;
         for (int i = 0; i < outputVector.size(); i++){
             cout << "Depth: " << i << endl;
             for (int j = 0; j < outputVector[i].size(); j++){
@@ -144,6 +145,17 @@ void conv(){
             cout << endl;
         }
         getchar();
+    }
+}
+
+void relu(){
+    for (int f = 0; f < outputDepth; f++){                      //outputDepth = # of neurons = # of filters
+        for (int v = 0; v < outputWidth; v++){                  //v for vertical (outputHeight)
+            for (int h = 0; h < outputWidth; h++){              //h for horizontal (outputWidth)
+                if (outputVector[f][v][h] <= 0)
+                    outputVector[f][v][h] = 0;
+            }
+        }
     }
 }
 
@@ -164,6 +176,7 @@ void maxpool(){
     }
     
     if(PDEBUG){
+        cout << "After max pooling: " << endl;
         for(int i = 0; i < poolOutput.size();i++){
             cout << "Depth: " << i << endl;
             for (int j = 0; j < poolOutput[i].size(); j++){
@@ -180,9 +193,9 @@ void maxpool(){
 
 
 int main(){
-    int error = 0;
     init();
     conv();
+    relu();
     maxpool();
     return 0;
 }
