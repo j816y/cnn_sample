@@ -195,5 +195,8 @@ int main(){
     conv();
     relu();
     maxpool();
+    
+    cout << testing << endl;
+    
     return 0;
 }
