@@ -160,7 +160,7 @@ int maxpool(){
         for(int i = 0; i < poolOutput.size();i++){
             cout << "Depth: " << i << endl;
             for (int j = 0; j < poolOutput[i].size(); j++){
-                for (int k = 0; k < poolOutput[k].size(); k++){
+                for (int k = 0; k < poolOutput[i][j].size(); k++){
                     cout << poolOutput[i][j][k] << " " << endl;
                 }
                 cout << endl;
@@ -177,6 +177,8 @@ int main(){
     int error = 0;
     error = init();
     error = conv();
+    cout << "problem?\n";
     error = maxpool();
+    cout << "no problem\n";
     return 0;
 }
