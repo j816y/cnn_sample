@@ -46,7 +46,7 @@ void init(){
         inputVector[i].resize(inputWidth);
         for(int j = 0; j < inputWidth; j++){
             for (int k = 0; k < inputWidth; k++)
-                inputVector[i][j].push_back(k+j*inputWidth);
+                inputVector[i][j].push_back(1);
         }
     }
     
@@ -57,7 +57,7 @@ void init(){
             filter[i][j].resize(filterRF);
             for(int k = 0; k < filterRF; k++){
                 for (int l = 0; l < filterRF; l++)
-                    filter[i][j][k].push_back(l+k*filterRF);
+                    filter[i][j][k].push_back(i+1);
             }
         }
     }
@@ -124,7 +124,7 @@ void conv(){
                 for (int y = 0; y < filterRF; y++){             //filter height = width
                     for (int x = 0; x < filterRF; x++){         //filter width
                         for (int z = 0; z < filterDepth; z++){  //filter depth
-                            outputVector[f][v][h] += filter[f][z][y][x] * inputVector[z][v+y][h+x];
+                            outputVector[f][v][h] += filter[f][z][y][x] * inputVector[z][v*stride+y][h*stride+x];
                         }
                     }
                 }
