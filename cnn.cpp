@@ -190,8 +190,6 @@ void maxpool(){
     }
 }
 
-
-
 int main(){
     init();
     conv();
