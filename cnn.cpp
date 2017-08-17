@@ -40,7 +40,7 @@ vector<vector<vector<double> > > outputVector;
 vector<vector<vector<double> > > poolOutput;
 
 
-int init(){
+void init(){
     inputVector.resize(inputDepth);
     for(int i = 0; i < inputDepth; i++){
         inputVector[i].resize(inputWidth);
@@ -68,6 +68,15 @@ int init(){
         for(int j = 0; j < outputWidth; j++){
             for (int k = 0; k < outputWidth; k++)
                 outputVector[i][j].push_back(0);
+        }
+    }
+    
+    poolOutput.resize(outputDepth);
+    for(int i = 0; i < outputDepth; i++){
+        poolOutput[i].resize(poolOutputSize);
+        for(int j = 0; j < poolOutputSize; j++){
+            for (int k = 0; k < poolOutputSize; k++)
+                poolOutput[i][j].push_back(0);
         }
     }
     
@@ -106,10 +115,9 @@ int init(){
         }
         getchar();
     }
-    return 0;
 }
 
-int conv(){
+void conv(){
     for (int f = 0; f < outputDepth; f++){                      //outputDepth = # of neurons = # of filters
         for (int v = 0; v < outputWidth; v++){                  //v for vertical (outputHeight)
             for (int h = 0; h < outputWidth; h++){              //h for horizontal (outputWidth)
@@ -137,10 +145,9 @@ int conv(){
         }
         getchar();
     }
-    return 0;
 }
 
-int maxpool(){
+void maxpool(){
     int value = 0;
     for (int i = 0; i < outputVector.size(); i++){      //outputdepth
         for (int j = 0; j < poolOutputSize; j++){       //vertical
@@ -168,17 +175,14 @@ int maxpool(){
         }
         getchar();
     }
-    return 0;
 }
 
 
 
 int main(){
     int error = 0;
-    error = init();
-    error = conv();
-    cout << "problem?\n";
-    error = maxpool();
-    cout << "no problem\n";
+    init();
+    conv();
+    maxpool();
     return 0;
 }
