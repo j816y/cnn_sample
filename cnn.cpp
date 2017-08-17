@@ -3,9 +3,9 @@
 #include <vector>
 #include <iostream>
 
-#define IDEBUG  false
-#define ODEBUG  false
-#define PDEBUG  false
+#define IDEBUG  true
+#define ODEBUG  true
+#define PDEBUG  true
 
 using namespace std;
 
@@ -46,7 +46,7 @@ void init(){
         inputVector[i].resize(inputWidth);
         for(int j = 0; j < inputWidth; j++){
             for (int k = 0; k < inputWidth; k++)
-                inputVector[i][j].push_back(1);
+                inputVector[i][j].push_back(k+j*inputWidth);
         }
     }
     
@@ -57,7 +57,7 @@ void init(){
             filter[i][j].resize(filterRF);
             for(int k = 0; k < filterRF; k++){
                 for (int l = 0; l < filterRF; l++)
-                    filter[i][j][k].push_back(i+10);
+                    filter[i][j][k].push_back(l+k*filterRF);
             }
         }
     }
@@ -85,22 +85,22 @@ void init(){
         for(int i = 0; i < inputDepth; i++){
             for(int j = 0; j < inputWidth; j++){
                 for (int k = 0; k < inputWidth; k++)
-                    cout << inputVector[i][j][k] << " ";
+                    cout << inputVector[i][j][k] << "   ";
                 cout << endl;
             }
         }
         getchar();
         
-        cout << "Output: " << endl;
-        for(int i = 0; i < outputDepth; i++){
-            cout << "Depth " << i << endl;
-            for(int j = 0; j < outputWidth; j++){
-                for (int k = 0; k < outputWidth; k++)
-                    cout << outputVector[i][j][k] << " ";
-                cout << endl;
-            }
-        }
-        getchar();
+        // cout << "Output: " << endl;
+        // for(int i = 0; i < outputDepth; i++){
+        //     cout << "Depth " << i << endl;
+        //     for(int j = 0; j < outputWidth; j++){
+        //         for (int k = 0; k < outputWidth; k++)
+        //             cout << outputVector[i][j][k] << "  ";
+        //         cout << endl;
+        //     }
+        // }
+        // getchar();
         
         for(int i = 0; i < filter.size(); i++){
             cout << "Filter " << i << endl;
@@ -136,8 +136,8 @@ void conv(){
         for (int i = 0; i < outputVector.size(); i++){
             cout << "Depth: " << i << endl;
             for (int j = 0; j < outputVector[i].size(); j++){
-                for (int k = 0; k < outputVector[k].size(); k++){
-                    cout << outputVector[i][j][k] << " " << endl;
+                for (int k = 0; k < outputVector[i][j].size(); k++){
+                    cout << outputVector[i][j][k] << "  ";
                 }
                 cout << endl;
             }
@@ -168,7 +168,7 @@ void maxpool(){
             cout << "Depth: " << i << endl;
             for (int j = 0; j < poolOutput[i].size(); j++){
                 for (int k = 0; k < poolOutput[i][j].size(); k++){
-                    cout << poolOutput[i][j][k] << " " << endl;
+                    cout << poolOutput[i][j][k] << "    ";
                 }
                 cout << endl;
             }
