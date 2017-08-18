@@ -11,14 +11,14 @@ using namespace std;
 
 //input size
 int padding = 0;
-int inputWidth = 6 + padding*2;
+int inputWidth = 8 + padding*2;
 int inputDepth = 1;
 
 //filter size
 int numOfFilter = 2;
-int filterRF = 3;
+int filterRF = 2;
 int filterDepth = inputDepth;
-int stride = 1;
+int stride = 2;
 
 //https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks-Part-2/
 //for equation to calculate output width/height
